@@ -368,6 +368,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
     singularName: 'product';
     pluralName: 'products';
     displayName: 'Product';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -375,10 +376,16 @@ export interface ApiProductProduct extends Schema.CollectionType {
   attributes: {
     name: Attribute.String &
       Attribute.Required &
-      Attribute.Unique &
       Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
+    slug: Attribute.UID<'api::product.product', 'name'> & Attribute.Required;
+    Desc: Attribute.Blocks & Attribute.Required;
+    Images: Attribute.Media;
+    Category: Attribute.Enumeration<
+      ['skincare', 'lipsticks', 'blushes', 'base', 'eyes']
+    > &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

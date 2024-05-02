@@ -4,7 +4,8 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "Product"
+    "displayName": "Product",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,8 +15,35 @@
     "name": {
       "type": "string",
       "required": true,
-      "unique": true,
+      "unique": false,
       "minLength": 3
+    },
+    "slug": {
+      "type": "uid",
+      "required": true,
+      "targetField": "name"
+    },
+    "Desc": {
+      "type": "blocks",
+      "required": true
+    },
+    "Images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "skincare",
+        "lipsticks",
+        "blushes",
+        "base",
+        "eyes"
+      ],
+      "required": true
     }
   }
 }
